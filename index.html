@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When a Revolut plan begins to pay</title>
+<meta name="description" content="The savings balance at which each Revolut plan's higher interest rate finally covers its subscription fee.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23fbfaf7'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23586b53' text-anchor='middle'%3E%C2%A3%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<meta property="og:title" content="When a Revolut plan begins to pay">
+<meta property="og:description" content="The savings balance at which each Revolut plan's higher interest rate finally covers its subscription fee.">
+<meta property="og:type" content="website">
+</head>
+<body>
+
+<main class="page">
+
+  <header class="masthead">
+    <div class="masthead__title">
+      <div class="eyebrow">Revolut savings</div>
+      <h1>When a plan begins to pay</h1>
+    </div>
+
+    <div class="billing" role="group" aria-label="Billing period">
+      <button type="button" class="billing__btn is-active" data-billing="monthly" aria-pressed="true">monthly</button>
+      <button type="button" class="billing__btn" data-billing="annual" aria-pressed="false">annual</button>
+    </div>
+  </header>
+
+  <!-- Rows are rendered by app.js -->
+  <div class="ladder" id="ladder"></div>
+
+  <noscript>
+    <div class="ladder">
+      <p class="note" style="padding:24px 0;border-top:1px solid var(--rule)">
+        This page calculates its thresholds in the browser, so it needs JavaScript enabled.
+        The short version: on monthly billing, Standard wins below about £27,000, Premium from
+        there to about £56,000, Metal to about £80,000, and Ultra above that.
+      </p>
+    </div>
+  </noscript>
+
+  <section class="notes" aria-label="Assumptions and caveats">
+    <p class="note"><span class="note__label">Plus omitted</span>Plus pays the same 2.90% AER as Standard, so on savings it only costs.</p>
+    <p class="note"><span class="note__label">Interest only</span>Insurance, lounges, exchange and partner subscriptions are left out of the arithmetic.</p>
+    <p class="note"><span class="note__label">Tax</span>Interest is paid gross. The £1,000 allowance is spent by roughly £30,000 of savings.</p>
+    <p class="note"><span class="note__label">Assumptions</span><span id="assumptions"></span></p>
+  </section>
+
+  <footer class="colophon">
+    <p>
+      Unofficial and independent — not affiliated with, endorsed by, or connected to Revolut Ltd.
+      Not financial advice. Check the current rates and prices before acting on any of this.
+    </p>
+    <p>
+      <a href="https://github.com/igor-sirotin/revolut-breakeven-plan">Source on GitHub</a>
+    </p>
+  </footer>
+
+</main>
+
+<script src="rates.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

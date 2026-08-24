@@ -1,0 +1,241 @@
+/* "Quiet" — near-white paper, Jost Light, sage accent, wide margins, almost no chrome. */
+
+:root {
+  --paper:    #fbfaf7;
+  --ink:      #2c2e2b;
+  --ink-soft: #4a534a;
+  --sage:     #5f6b5c;
+  --sage-deep:#3f4a3c;
+  --accent:   #586b53;
+  --rule:     #e7e4dd;
+  --link:     #6d7a68;
+  --link-rule:#cfd6cb;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Jost, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--link-rule);
+}
+a:hover { color: var(--sage-deep); border-bottom-color: var(--sage-deep); }
+
+::selection { background: #e4e9df; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Layout ------------------------------------------------------------------ */
+
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 clamp(24px, 7vw, 110px) clamp(16px, 2.4vh, 32px);
+}
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: clamp(18px, 3vh, 44px) 0 clamp(10px, 1.6vh, 20px);
+}
+
+.masthead__title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-weight: 200;
+  font-size: clamp(20px, 3.4vh, 34px);
+  line-height: 1.15;
+  letter-spacing: .01em;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* Billing toggle ---------------------------------------------------------- */
+
+.billing {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.billing__btn {
+  font: inherit;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: lowercase;
+  padding: 3px 0;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: var(--sage);
+  cursor: pointer;
+}
+.billing__btn.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--link);
+}
+
+/* The ladder -------------------------------------------------------------- */
+
+.ladder {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.rung {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 64px);
+  align-items: baseline;
+  flex: 1 1 auto;
+  min-height: min-content;
+  padding: clamp(10px, 1.6vh, 22px) 0;
+  border-top: 1px solid var(--rule);
+}
+
+.rung__balance,
+.rung__plan {
+  display: flex;
+  flex-direction: column;
+}
+
+.rung__balance { gap: 6px; }
+.rung__plan    { gap: 8px; }
+
+.rung__figure {
+  font-weight: 200;
+  font-size: clamp(32px, 5.8vh, 64px);
+  line-height: 1;
+  letter-spacing: -.01em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.rung__figure--base { color: var(--ink); }
+
+.rung__name {
+  font-weight: 400;
+  font-size: clamp(15px, 2.4vh, 20px);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.rung__meta {
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: var(--ink-soft);
+  white-space: pre;
+}
+
+.rung__note {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 44ch;
+}
+
+/* Notes and colophon ------------------------------------------------------ */
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(16px, 2.6vw, 40px);
+  padding-top: clamp(14px, 2vh, 26px);
+  border-top: 1px solid var(--rule);
+  flex: 0 0 auto;
+}
+
+.note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.note__label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 5px;
+}
+
+.colophon {
+  padding-top: clamp(14px, 2vh, 24px);
+  margin-top: clamp(14px, 2vh, 24px);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.colophon p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--sage);
+  max-width: 70ch;
+}
+
+/* Small screens ----------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .page { min-height: 0; }
+
+  .masthead {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .rung {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 18px 0;
+  }
+
+  .rung__figure { font-size: 40px; }
+  .rung__name   { font-size: 16px; }
+
+  .notes { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
+
+/* Very short windows: stop the vh-scaled type from crushing the rows. */
+@media (max-height: 560px) {
+  .rung__figure { font-size: 32px; }
+}
+
+@media print {
+  .billing { display: none; }
+  body { background: #fff; }
+}
