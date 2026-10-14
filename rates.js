@@ -16,7 +16,7 @@ window.REVOLUT_DATA = {
     { name: 'Standard', aer: 0.0290, monthly: 0,     annual: 0   },
     { name: 'Plus',     aer: 0.0290, monthly: 3.99,  annual: 40  },
     { name: 'Premium',  aer: 0.0325, monthly: 8.99,  annual: 90  },
-    { name: 'Metal',    aer: 0.0340, monthly: 14.99, annual: 140 },
+    { name: 'Metal',    aer: 0.0340, monthly: 16.99, annual: 165 },
     { name: 'Ultra',    aer: 0.0400, monthly: 60,    annual: 595 }
   ],
 
