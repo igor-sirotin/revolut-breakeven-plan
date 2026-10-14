@@ -17,7 +17,7 @@ window.REVOLUT_DATA = {
     { name: 'Plus',     aer: 0.0290, monthly: 3.99,  annual: 40  },
     { name: 'Premium',  aer: 0.0325, monthly: 8.99,  annual: 90  },
     { name: 'Metal',    aer: 0.0340, monthly: 14.99, annual: 140 },
-    { name: 'Ultra',    aer: 0.0400, monthly: 55,    annual: 540 }
+    { name: 'Ultra',    aer: 0.0400, monthly: 60,    annual: 595 }
   ],
 
   // Balance above which the top rate no longer applies, used only in the

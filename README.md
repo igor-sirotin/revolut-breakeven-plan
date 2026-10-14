@@ -30,8 +30,8 @@ With the published UK figures and monthly billing, that ladder is roughly:
 | --- | --- |
 | below ~£30,800 | Standard |
 | ~£30,800 – £48,000 | Premium |
-| £48,000 – ~£80,000 | Metal |
-| above ~£80,000 | Ultra |
+| £48,000 – ~£90,000 | Metal |
+| above ~£90,000 | Ultra |
 
 Annual billing is cheaper, so every rung moves down. Toggle it on the page.
 
