@@ -28,9 +28,9 @@ With the published UK figures and monthly billing, that ladder is roughly:
 
 | Balance | Best plan on interest alone |
 | --- | --- |
-| below ~£27,400 | Standard |
-| ~£27,400 – £56,000 | Premium |
-| £56,000 – ~£80,000 | Metal |
+| below ~£30,800 | Standard |
+| ~£30,800 – £48,000 | Premium |
+| £48,000 – ~£80,000 | Metal |
 | above ~£80,000 | Ultra |
 
 Annual billing is cheaper, so every rung moves down. Toggle it on the page.
