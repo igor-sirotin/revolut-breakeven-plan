@@ -33,9 +33,10 @@ With the published UK figures and monthly billing, that ladder is roughly:
 | ~£30,000 – £40,000 | Premium |
 | above £40,000 | Metal |
 
-Ultra never leads on monthly billing: it would only catch Metal above £200,000,
-where its rate drops below Metal's. Annual billing is cheaper, so every rung moves
-down and Ultra leads between ~£172,000 and ~£229,000. Toggle it on the page.
+Ultra never leads on monthly billing: it is still behind Metal at £200,000, and
+above that it pays the same rate as Metal, so it never catches up. Annual billing
+is cheaper, so every rung moves down and Ultra leads from ~£172,000. Toggle it on
+the page.
 
 Plus never appears: it pays the same AER as Standard, so on savings it is pure cost.
 
