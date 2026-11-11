@@ -6,15 +6,15 @@
  * Net return for a plan at balance b, over one year:  b * aer - fee
  * Two plans break even where  b * aerA - feeA = b * aerB - feeB, i.e.
  *   b = (feeB - feeA) / (aerB - aerA)
- * A plan only ever becomes worth buying if it pays a strictly higher rate, so
- * we walk upward: from the current best plan, the next rung is whichever
- * higher-rate plan crosses over first.
+ * A plan with a `cap` pays `capAer` on the part of the balance above it, so
+ * its net line bends at the cap. Between consecutive caps every line is
+ * straight, so we collect each pairwise crossover inside each such segment,
+ * then find the winner between neighbouring points and merge equal winners.
  */
 (function () {
   'use strict';
 
   var data = window.REVOLUT_DATA;
-  var MAX_RUNGS = 10; // guards against a bad data edit looping forever
 
   var state = { billing: 'monthly' };
 
@@ -24,11 +24,38 @@
       return {
         name: plan.name,
         aer: plan.aer,
+        cap: plan.cap,
+        capAer: plan.capAer,
         monthly: plan.monthly,
         annual: plan.annual,
         fee: billing === 'annual' ? plan.annual : plan.monthly * 12
       };
     });
+  }
+
+  /** Net line of a plan on a segment that starts at `from`: { slope, at0 }. */
+  function lineFrom(plan, from) {
+    if (plan.cap && from >= plan.cap) {
+      return {
+        slope: plan.capAer,
+        at0: plan.cap * (plan.aer - plan.capAer) - plan.fee
+      };
+    }
+    return { slope: plan.aer, at0: -plan.fee };
+  }
+
+  function net(plan, balance) {
+    var line = lineFrom(plan, balance);
+    return balance * line.slope + line.at0;
+  }
+
+  /** Earlier plans win ties, so a free plan beats a paid one at equal net. */
+  function bestAt(plans, balance) {
+    var best = plans[0];
+    plans.forEach(function (plan) {
+      if (net(plan, balance) > net(best, balance) + 1e-9) best = plan;
+    });
+    return best;
   }
 
   /**
@@ -37,27 +64,35 @@
    */
   function ladder(billing) {
     var plans = plansWithFees(billing);
-    var bands = [];
-    var current = plans[0];
-    var floor = 0;
 
-    for (var i = 0; i < MAX_RUNGS; i++) {
-      bands.push({ plan: current, from: floor });
+    var edges = [0];
+    plans.forEach(function (plan) {
+      if (plan.cap) edges.push(plan.cap);
+    });
+    edges.sort(function (a, b) { return a - b; });
 
-      var next = null;
-      plans.forEach(function (plan) {
-        if (plan.aer <= current.aer) return; // never worth more for savings
-        var crossover = (plan.fee - current.fee) / (plan.aer - current.aer);
-        // Must be above the current band's floor, and we want the earliest one.
-        if (crossover > floor + 0.5 && (!next || crossover < next.at)) {
-          next = { at: crossover, plan: plan };
-        }
+    var points = edges.slice();
+    edges.forEach(function (start, e) {
+      var end = e + 1 < edges.length ? edges[e + 1] : Infinity;
+      plans.forEach(function (a) {
+        plans.forEach(function (b) {
+          var la = lineFrom(a, start);
+          var lb = lineFrom(b, start);
+          if (la.slope === lb.slope) return;
+          var at = (lb.at0 - la.at0) / (la.slope - lb.slope);
+          if (at > start && at < end) points.push(at);
+        });
       });
+    });
+    points.sort(function (a, b) { return a - b; });
 
-      if (!next) break;
-      floor = next.at;
-      current = next.plan;
-    }
+    var bands = [];
+    points.forEach(function (from, p) {
+      var to = p + 1 < points.length ? points[p + 1] : from * 2 + 1;
+      var winner = bestAt(plans, (from + to) / 2);
+      var last = bands[bands.length - 1];
+      if (!last || last.plan !== winner) bands.push({ plan: winner, from: from });
+    });
 
     return bands;
   }
@@ -123,15 +158,16 @@
   }
 
   function renderAssumptions() {
-    var top = data.plans[data.plans.length - 1];
     var parts = [
       'Flat balance over one year, rates unchanged, no boost rate.'
     ];
-    if (data.topRateCap) {
+    data.plans.forEach(function (plan) {
+      if (!plan.cap) return;
       parts.push(
-        top.name + ' ' + (top.aer * 100).toFixed(2) + '% to ' + money(data.topRateCap) + '.'
+        plan.name + ' ' + (plan.aer * 100).toFixed(2) + '% to ' + money(plan.cap) +
+        ', ' + (plan.capAer * 100).toFixed(2) + '% above.'
       );
-    }
+    });
     parts.push(data.checked + '.');
     document.getElementById('assumptions').textContent = parts.join(' ');
   }

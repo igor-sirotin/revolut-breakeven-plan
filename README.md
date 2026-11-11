@@ -20,8 +20,9 @@ Two plans break even where those lines cross:
 balance = (feeB − feeA) / (aerB − aerA)
 ```
 
-Walking upward from the free plan gives a **ladder** — the balance at which each
-plan in turn takes the lead. Anything below the first rung, and no paid plan
+Ultra pays its top rate only up to £200,000 and a lower one above that, so its
+line bends there. Walking upward from the free plan gives a **ladder** — the
+balance at which each plan in turn takes the lead. Anything below the first rung, and no paid plan
 recovers its fee on interest alone.
 
 With the published UK figures and monthly billing, that ladder is roughly:
@@ -30,10 +31,11 @@ With the published UK figures and monthly billing, that ladder is roughly:
 | --- | --- |
 | below ~£30,000 | Standard |
 | ~£30,000 – £40,000 | Premium |
-| £40,000 – ~£206,000 | Metal |
-| above ~£206,000 | Ultra |
+| above £40,000 | Metal |
 
-Annual billing is cheaper, so every rung moves down. Toggle it on the page.
+Ultra never leads on monthly billing: it would only catch Metal above £200,000,
+where its rate drops below Metal's. Annual billing is cheaper, so every rung moves
+down and Ultra leads between ~£172,000 and ~£229,000. Toggle it on the page.
 
 Plus never appears: it pays the same AER as Standard, so on savings it is pure cost.
 
@@ -65,7 +67,8 @@ python3 -m http.server 8000
 ## Updating the numbers
 
 Everything that goes stale lives in [`rates.js`](rates.js): each plan's AER and its
-monthly and annual price, plus a `checked` date shown in the footnotes. Edit that
+monthly and annual price, any balance cap with the rate paid above it, plus a
+`checked` date shown in the footnotes. Edit that
 file and the whole ladder recalculates — no other file needs touching.
 
 ## Deploying
