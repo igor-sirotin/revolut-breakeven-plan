@@ -16,7 +16,7 @@
 
   var data = window.REVOLUT_DATA;
 
-  var state = { billing: 'monthly' };
+  var state = { billing: 'annual' };
 
   /** Yearly cost of each plan under the selected billing period. */
   function plansWithFees(billing) {

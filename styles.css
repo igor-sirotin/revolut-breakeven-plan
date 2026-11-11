@@ -81,7 +81,10 @@ a:hover { color: var(--sage-deep); border-bottom-color: var(--sage-deep); }
 .billing {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--link-rule);
+  border-radius: 999px;
 }
 
 .billing__btn {
@@ -90,16 +93,25 @@ a:hover { color: var(--sage-deep); border-bottom-color: var(--sage-deep); }
   font-size: 11px;
   letter-spacing: .2em;
   text-transform: lowercase;
-  padding: 3px 0;
+  padding: 6px 14px;
   border: none;
-  border-bottom: 1px solid transparent;
+  border-radius: 999px;
   background: transparent;
   color: var(--sage);
   cursor: pointer;
+  transition: background-color .15s, color .15s;
+}
+.billing__btn:hover {
+  color: var(--ink);
+  background: var(--rule);
+}
+.billing__btn:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
 }
 .billing__btn.is-active {
-  color: var(--ink);
-  border-bottom-color: var(--link);
+  color: var(--paper);
+  background: var(--sage-deep);
 }
 
 /* The ladder -------------------------------------------------------------- */
