@@ -9,14 +9,14 @@
  * were last verified. Rates are the base (non-boosted) instant-access rates.
  */
 window.REVOLUT_DATA = {
-  checked: 'October 2026',
+  checked: 'November 2026',
   currency: 'GBP',
 
   plans: [
-    { name: 'Standard', aer: 0.0290, monthly: 0,     annual: 0   },
-    { name: 'Plus',     aer: 0.0290, monthly: 3.99,  annual: 40  },
-    { name: 'Premium',  aer: 0.0325, monthly: 8.99,  annual: 90  },
-    { name: 'Metal',    aer: 0.0340, monthly: 16.99, annual: 165 },
+    { name: 'Standard', aer: 0.0315, monthly: 0,     annual: 0   },
+    { name: 'Plus',     aer: 0.0315, monthly: 3.99,  annual: 40  },
+    { name: 'Premium',  aer: 0.0351, monthly: 8.99,  annual: 90  },
+    { name: 'Metal',    aer: 0.0375, monthly: 16.99, annual: 165 },
     { name: 'Ultra',    aer: 0.0400, monthly: 60,    annual: 595 }
   ],
 

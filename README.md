@@ -28,10 +28,10 @@ With the published UK figures and monthly billing, that ladder is roughly:
 
 | Balance | Best plan on interest alone |
 | --- | --- |
-| below ~£30,800 | Standard |
-| ~£30,800 – £64,000 | Premium |
-| £64,000 – ~£86,000 | Metal |
-| above ~£86,000 | Ultra |
+| below ~£30,000 | Standard |
+| ~£30,000 – £40,000 | Premium |
+| £40,000 – ~£206,000 | Metal |
+| above ~£206,000 | Ultra |
 
 Annual billing is cheaper, so every rung moves down. Toggle it on the page.
 
@@ -46,7 +46,7 @@ honest way to put a single number on them. If you use the perks, your personal
 break-even is lower than what this page shows.
 
 Interest is also shown gross. The UK Personal Savings Allowance is used up at
-roughly £30,000 of savings at these rates, after which tax reduces the gap between
+roughly £32,000 of savings at these rates, after which tax reduces the gap between
 plans and pushes the thresholds up.
 
 Rates and prices change. Check them before acting on anything here.
